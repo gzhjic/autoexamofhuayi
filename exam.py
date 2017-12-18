@@ -31,33 +31,6 @@ def getContent(url):
     r = requests.get(url)
     return r.content
 
-def login_sso(username, password):
-    login_data = {
-                'username':username,
-                'password':password,
-                'loginType':1,
-                'from':'91huayi'
-    }
-    header_base = {
-        'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-        'Accept-Encoding':'gzip, deflate',
-        'Accept-Language':'zh-CN,zh;q=0.8',
-        'Connection':'keep-alive',
-        'Host':'passport.huayiyuan.com',
-        'Referer':'http://sso.91huayi.com/sso/login_all.ashx?username=2619330321&password=080808&loginType=1&from=91huayi',
-        'Upgrade-Insecure-Requests':'1',
-        'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'
-    }
-    session = requests.session()
-
-    baseurl = 'http://sso.91huayi.com/sso/login_all.ashx'
-
-    content = session.get(baseurl, headers = header_base, data = login_data)
-
-    print content.text
-
-    s = session.get("http://www.91huayi.com/",verify = False)
-    print s.text
 
 def login_cme1(username, password):
     login_data = {
@@ -72,7 +45,7 @@ def login_cme1(username, password):
         'Accept-Language': 'zh-CN,zh;q=0.8',
         'Connection': 'keep-alive',
         'Host': 'cme1.91huayi.com',
-        'Referer': 'http://sso.91huayi.com/sso/login_all.ashx?username=2619330321&password=080808&loginType=1&from=91huayi',
+        'Referer': 'http://sso.91huayi.com/sso/login_all.ashx?username='+username+'&password='+password+'&loginType=1&from=91huayi',
         'Upgrade-Insecure-Requests': '1',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'
     }
